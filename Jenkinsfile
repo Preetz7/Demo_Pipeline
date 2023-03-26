@@ -10,32 +10,19 @@ pipeline {
         stage('Check_version') {
             steps {
                 bat 'mvn --version'
-        }
+            }
         }
         
         stage('Path') {
             steps {
                 git 'https://github.com/Preetz7/Demo_Pipeline.git'
-        }
-        }
-        
-        stage('Check_branch') {
-                steps {
-                script {
-                    if (env.BRANCH_NAME == 'master') {
-                        echo 'The default branch is master'
-                    }  
-                    else {
-                        echo 'The default branch is not master'
-                    }
-                 }
             }
         }
         
         stage('Build') {
             steps {
                 bat 'mvn clean install package -DskipTests'
-        }
+            }
         }
         
         stage('Consent') {
