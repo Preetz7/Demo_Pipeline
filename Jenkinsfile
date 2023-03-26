@@ -21,8 +21,10 @@ pipeline {
         
         stage('Check_branch') {
                 when
-                {   
-                    branch "main"
+                { 
+                    not{
+                         branch "main"
+                    }
                 }
                 steps {
                        echo 'The default branch is master'
