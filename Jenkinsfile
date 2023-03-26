@@ -20,16 +20,15 @@ pipeline {
         }
         
         stage('Check_branch') {
-                when
-                { 
-                    not{
-                         branch "main"
-                    }
-                }
                 steps {
-                       echo 'The default branch is master'
-                       input('Do you want to proceed?')
-                }
+                script {
+                    if (env.BRANCH_NAME == 'main') {
+                        echo 'Hello from main branch'
+                    }  else {
+                        echo 'Hello'
+                    }
+                    }
+            }
         }
         
         stage('Build') {
